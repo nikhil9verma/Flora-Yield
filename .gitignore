@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Runtime logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Prisma / SQLite generated files
+backend/prisma/dev.db
+backend/prisma/dev.db-journal
+backend/prisma/backend/prisma/dev.db
+backend/prisma/backend/prisma/dev.db-journal
+
+# Keep migrations under version control
+!backend/prisma/migrations/
+
+# Vite cache
+frontend/.vite/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

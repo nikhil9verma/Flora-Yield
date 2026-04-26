@@ -1,0 +1,24 @@
+{
+  "name": "flora-yield-platform",
+  "version": "2.0.0",
+  "description": "Flora-Yield Agritech Platform — Microservices Architecture",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && npm install --prefix service-registry && npm install --prefix api-gateway && npm install --prefix services/auth-service && npm install --prefix services/climate-service && npm install --prefix services/government-service && npm install --prefix services/market-service && npm install --prefix services/recommendation-service && npm install --prefix frontend",
+    "dev": "concurrently --names \"REGISTRY,GATEWAY,AUTH,CLIMATE,GOV,MARKET,REC,FRONTEND\" --prefix-colors \"magenta,cyan,yellow,blue,green,red,white,gray\" \"npm run start:registry\" \"npm run start:gateway\" \"npm run start:auth\" \"npm run start:climate\" \"npm run start:gov\" \"npm run start:market\" \"npm run start:rec\" \"npm run start:frontend\"",
+    "start:registry": "node service-registry/index.js",
+    "start:gateway": "node api-gateway/index.js",
+    "start:auth": "node services/auth-service/index.js",
+    "start:auth:2": "set AUTH_PORT=5007&& node services/auth-service/index.js",
+    "start:climate": "node services/climate-service/index.js",
+    "start:gov": "node services/government-service/index.js",
+    "start:market": "node services/market-service/index.js",
+    "start:rec": "node services/recommendation-service/index.js",
+    "start:frontend": "npm run dev --prefix frontend",
+    "db:push": "npx prisma db push --schema=backend/prisma/schema.prisma",
+    "db:seed": "node backend/prisma/seed.js"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

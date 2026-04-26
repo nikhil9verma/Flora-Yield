@@ -1,0 +1,47 @@
+// This is your Prisma schema file for Flora-Yield
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── User Model ───────────────────────────────────────────────────────────────
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("farmer") // "farmer" | "admin"
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ─── Supplier Model ───────────────────────────────────────────────────────────
+model Supplier {
+  id             Int      @id @default(autoincrement())
+  businessName   String
+  category       String   // "Manure" | "Fertilizer" | "Pesticide" | "Machinery"
+  contactNumber  String
+  address        String
+  verifiedStatus Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ─── BuyerLead Model ─────────────────────────────────────────────────────────
+model BuyerLead {
+  id                  Int      @id @default(autoincrement())
+  companyName         String
+  targetCrop          String
+  requiredQuantityKg  Float
+  offeredPricePerKg   Float
+  contactEmail        String
+  contactPhone        String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
